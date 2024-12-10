@@ -22,5 +22,13 @@ namespace CadastroUsuario.Service
             var resultadoMapeado = _mapper.Map< IEnumerable<UsuarioModel>, IEnumerable<UsuarioDto>>(res);
             return resultadoMapeado;
         }
+
+        public async Task<bool> Create(UsuarioModel usuario)
+        {
+            usuario.DataInclusao = DateTime.Now;
+            _context.Add(usuario);
+            var res = await _context.SaveChangesAsync();
+            return res > 0;
+        }
     }
 }
