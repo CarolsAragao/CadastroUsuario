@@ -21,10 +21,32 @@ namespace CadastroUsuario.Controllers
             return Ok(res);
         }
 
+        [HttpGet("UsuarioById/{id}")]
+        public async Task<IActionResult> GetUsuarioById([FromRoute] Guid id)
+        {
+            var res = await _usuarioService.GetUsuarioById(id);
+            return Ok(res);
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] UsuarioModel usuario)
         {
             var res = await _usuarioService.Create(usuario);
+            return Ok(res);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UsuarioModel usuario)
+        {
+            var res = await _usuarioService.Update(usuario);
+            return Ok(res);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
+        {
+            var res = await _usuarioService.Delete(id);
             return Ok(res);
         }
     }
