@@ -8,21 +8,8 @@ namespace CadastroUsuario.Core.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
-        public DbSet<UsuarioModel> Usuarios { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<UsuarioModel>()
-                .Property(u => u.Escolaridade)
-                .HasConversion<int>();
-        }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.EnableSensitiveDataLogging();
-        //}
+        public DbSet<UsuarioModel> Usuarios { get; set; }       
+        public DbSet<EscolaridadeModel> Escolaridades { get; set; }       
     }
 }
 

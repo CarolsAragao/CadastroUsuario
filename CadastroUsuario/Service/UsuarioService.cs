@@ -18,7 +18,7 @@ namespace CadastroUsuario.Service
         }
         public async Task<IEnumerable<UsuarioDto>> Get()
         {
-            var res = await _context.Usuarios.ToListAsync();
+            var res = await _context.Usuarios.Include(u => u.Escolaridade).ToListAsync();
             var resultadoMapeado = _mapper.Map<IEnumerable<UsuarioDto>>(res);
             return resultadoMapeado;
         }
