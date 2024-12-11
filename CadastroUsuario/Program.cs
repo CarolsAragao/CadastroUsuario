@@ -24,6 +24,8 @@ builder.Services.RegistersDependencies();
 
 var app = builder.Build();
 
+app.UseCors("PoliticaLiberada");
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

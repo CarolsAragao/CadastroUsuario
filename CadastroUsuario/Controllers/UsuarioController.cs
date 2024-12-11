@@ -1,6 +1,5 @@
 ﻿using CadastroUsuario.Core.Base.Controller;
 using CadastroUsuario.Model;
-using CadastroUsuario.Model.dto;
 using CadastroUsuario.Service;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +17,13 @@ namespace CadastroUsuario.Controllers
         public async Task<IActionResult> Get()
         {
             var res = await _usuarioService.Get();
+            return Ok(res);
+        }
+
+        [HttpGet("GetEscolaridade")]
+        public async Task<IActionResult> GetEscolaridade()
+        {
+            var res = await _usuarioService.GetEscolaridade();
             return Ok(res);
         }
 

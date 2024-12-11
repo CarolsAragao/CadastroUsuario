@@ -39,7 +39,18 @@ namespace CadastroUsuario.Service
 
         public async Task<bool> Update(UsuarioModel usuario)
         {
-            _context.Usuarios.Update(usuario);
+            var usuarioExistente = await _context.Usuarios.FindAsync(usuario.Id);
+
+            if (usuarioExistente == null) return false;
+
+            usuarioExistente.Id = usuario.Id;
+            usuarioExistente.Nome = usuario.Nome;
+            usuarioExistente.Sobrenome = usuario.Sobrenome;
+            usuarioExistente.Email = usuario.Email;
+            usuarioExistente.DataNascimento = usuario.DataNascimento;
+            usuarioExistente.EscolaridadeId = usuario.EscolaridadeId;
+
+            _context.Usuarios.Update(usuarioExistente);
             var res = _context.SaveChanges();
             return res > 0;
         }
@@ -52,6 +63,12 @@ namespace CadastroUsuario.Service
             var res = _context.SaveChanges();
             return res > 0;
 
+        }
+
+        public async Task<IEnumerable<EscolaridadeModel>> GetEscolaridade()
+        {
+            var res = await _context.Escolaridades.ToListAsync();
+            return res;
         }
     }
 }
