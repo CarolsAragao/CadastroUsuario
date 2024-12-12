@@ -69,7 +69,48 @@ namespace CadastroUsuario.Service
         public async Task<IEnumerable<EscolaridadeModel>> GetEscolaridade()
         {
             var res = await _context.Escolaridades.ToListAsync();
+
+            if (res.Count <= 0)
+            {
+                res = await PopularEscolaridade();
+            }
+
             return res;
+        }
+
+        public async Task<List<EscolaridadeModel>> PopularEscolaridade()
+        {
+            var escolaridadeList = new List<EscolaridadeModel>() {
+        new EscolaridadeModel
+        {
+            Id = Guid.NewGuid(),
+            Descricao = "INFANTIL"
+        },
+        new EscolaridadeModel
+        {
+            Id = Guid.NewGuid(),
+            Descricao = "FUNDAMENTAL"
+        },
+        new EscolaridadeModel
+        {
+            Id = Guid.NewGuid(),
+            Descricao = "MEDIO"
+        },
+        new EscolaridadeModel
+        {
+            Id = Guid.NewGuid(),
+            Descricao = "SUPERIOR"
+        }
+   };
+
+            _context.AddRange(escolaridadeList);
+            var res = await _context.SaveChangesAsync();
+
+            if (res <= 0) return new List<EscolaridadeModel>();
+
+            var escolaridades = await _context.Escolaridades.ToListAsync();
+
+            return escolaridades;
         }
     }
 }
