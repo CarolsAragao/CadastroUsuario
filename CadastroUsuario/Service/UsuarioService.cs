@@ -29,10 +29,11 @@ namespace CadastroUsuario.Service
             return resMapeado;
         }
 
-        public async Task<bool> Create(UsuarioModel usuario)
+        public async Task<bool> Create(UsuarioCreateModel usuario)
         {
-            usuario.DataInclusao = DateTime.Now;
-            _context.Add(usuario);
+            var usuarioModel = _mapper.Map<UsuarioModel>(usuario);
+            usuarioModel.DataInclusao = DateTime.Now;
+            _context.Add(usuarioModel);
             var res = await _context.SaveChangesAsync();
             return res > 0;
         }

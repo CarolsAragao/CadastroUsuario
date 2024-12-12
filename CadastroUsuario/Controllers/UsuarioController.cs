@@ -36,7 +36,7 @@ namespace CadastroUsuario.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] UsuarioModel usuario)
+        public async Task<IActionResult> Create([FromBody] UsuarioCreateModel usuario)
         {
             var res = await _usuarioService.Create(usuario);
             return Ok(res);
@@ -54,6 +54,6 @@ namespace CadastroUsuario.Controllers
         {
             var res = await _usuarioService.Delete(id);
             return Ok(res);
-        }
+        }  
     }
 }

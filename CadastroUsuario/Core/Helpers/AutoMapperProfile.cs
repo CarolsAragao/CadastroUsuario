@@ -10,6 +10,9 @@ namespace CadastroUsuario.Core.Helpers
         {
             CreateMap<UsuarioModel, UsuarioDto>();
             CreateMap<UsuarioDto, UsuarioModel>();
+
+            CreateMap<UsuarioModel, UsuarioCreateModel>();
+            CreateMap<UsuarioCreateModel, UsuarioModel>();
         }
     }
 }
