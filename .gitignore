@@ -14,7 +14,7 @@ obj/
 *.sln.docstates
 
 # Ignore ASP.NET Core config files
-appsettings*.json
+# appsettings*.json
 
 # Ignore logs
 *.log
